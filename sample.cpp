@@ -1,6 +1,9 @@
 #include<iostream>
 using namespace std;
-main()
+int main()
 {
-    cout<<"Hello,World!"<<endl;
+    char name[30];
+    cin>>name;
+    cout<<"This program is coded by "<<name<<endl;
+    return 0;
 }
