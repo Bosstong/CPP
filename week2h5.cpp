@@ -2,9 +2,9 @@
 using namespace std;
 int main()
 {
-	char x , d ;
+	char x , y ;
 	cin >> x ;
-	(x>='a'&&x<='z')?d=x-32:d=x;
-	cout << d ;
+	(x>='a'&&x<='z')?y=x-32:y=x;
+	cout << y ;
 	return 0;
 }
