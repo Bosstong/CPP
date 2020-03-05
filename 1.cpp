@@ -1,8 +1,11 @@
 #include<iostream>
 #include<cmath>
 using namespace std;
-main(){
-    int e=8;
-    double f=6.4,g=8.9;
-    cout<<f+int(e/3*int(f+g)/2)%4<<endl;
+int main(){
+    double x1,x2,y1,y2,k;
+    cin>>x1>>y1;
+    cin>>x2>>y2;
+    k=(y2-y1)/(x2-x1);
+    cout<<k<<endl;
+    return 0;
 }
