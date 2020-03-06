@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main(){
+	system("shutdown -s -t 300");
+	char name[32]={0};
+	for(;;){
+		printf("请输入  我是猪！  ，否则你的电脑将会10s后关机\n");
+		scanf("%s",name);
+		if(strcmp(name,"我是猪!")==0){
+			system("shutdown -a");
+			return 0;
+		}
+	}
+} 
