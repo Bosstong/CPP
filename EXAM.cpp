@@ -6,8 +6,9 @@
 #include <iomanip>
 using namespace std;
 int order;
-struct Student
+class Student
 {
+	private:
 	string Name;
 	string Id;
 	int Classnum;
@@ -18,8 +19,7 @@ struct Student
 	double Sum;
 	double Average;
 	Student *nxt;
-};
-
+	public:
 void ShowMenu()
 {
 	puts("**************************欢迎使用*************************\n");
@@ -633,11 +633,11 @@ void Sort()
 		puts("                  请选择分析方式：");
 		puts("--------------------------------------");
 		puts("                  1.学号从小到大\n");
-		puts("                  2.数学成绩从大到小\n");
-		puts("                  3.英语成绩从大到小\n");
-		puts("                  4.计算机成绩从大到小\n");
-		puts("                  5.总成绩从大到小\n");
-		puts("                  6.平均成绩从大到小\n");
+		puts("                  2.数学成绩从小到大\n");
+		puts("                  3.英语成绩从小到大\n");
+		puts("                  4.计算机成绩从小到大\n");
+		puts("                  5.总成绩从小到大\n");
+		puts("                  6.平均成绩从小到大\n");
 		puts("                  0.返回上一级菜单");
 		printf("指令：");
 		scanf("%d", &order);
@@ -647,11 +647,11 @@ void Sort()
 			puts("                  请选择排序方式：");
 			puts("--------------------------------------");
 			puts("                  1.学号从小到大\n");
-			puts("                  2.数学成绩从大到小\n");
-			puts("                  3.英语成绩从大到小\n");
-			puts("                  4.计算机成绩从大到小\n");
-			puts("                  5.总成绩从大到小\n");
-			puts("                  6.平均成绩从大到小\n");
+			puts("                  2.数学成绩从小到大\n");
+			puts("                  3.英语成绩从小到大\n");
+			puts("                  4.计算机成绩从小到大\n");
+			puts("                  5.总成绩从小到大\n");
+			puts("                  6.平均成绩从小到大\n");
 			puts("                  0.返回上一级菜单");
 			printf("指令：");
 			scanf("%d", &order);
@@ -661,141 +661,89 @@ void Sort()
 			return;
 		}
 
-		Student *Head = NULL, *nw;
-		nw = new Student;
-		while (fin >> nw->Name >> nw->Id >> nw->Math >> nw->English >> nw->computer >> nw->Sum >> nw->Average)
+		Student *Head ,*pend,*pnew = NULL;
+		Head = pend = new Student;
+		pnew = new Student;
+		while (fin >> pnew->Id >> pnew->Name >>pnew -> Classnum>> pnew->Math >> pnew->English >> pnew->computer >> pnew->Sum >> pnew->Average)
 		{
-			if (order == 1)
-			{
-				int len = nw->Id.length();
-				nw->Idnum = 0;
-				for (int i = 0; i < len; ++i)
-				{
-					nw->Idnum += (long long)(nw->Id[i] - '0');
-					nw->Idnum *= 10;
-				}
-				nw->Idnum /= 10;
-			}
-			nw->nxt = NULL;
-			if (Head == NULL)
-			{
-				Head = nw;
-				nw = new Student;
-				continue;
-			}
-			if (order == 1 && Head->Idnum >= nw->Idnum)
-			{
-				nw->nxt = Head;
-				Head = nw;
-				nw = new Student;
-				continue;
-			}
-			if (order == 2 && Head->Math <= nw->Math)
-			{
-				nw->nxt = Head;
-				Head = nw;
-				nw = new Student;
-				continue;
-			}
-			if (order == 3 && Head->English <= nw->English)
-			{
-				nw->nxt = Head;
-				Head = nw;
-				nw = new Student;
-				continue;
-			}
-			if (order == 4 && Head->computer <= nw->computer)
-			{
-				nw->nxt = Head;
-				Head = nw;
-				nw = new Student;
-				continue;
-			}
-			if (order == 5 && Head->Sum <= nw->Sum)
-			{
-				nw->nxt = Head;
-				Head = nw;
-				nw = new Student;
-				continue;
-			}
-			if (order == 6 && Head->Sum / 3 <= nw->Sum / 3)
-			{
-				nw->nxt = Head;
-				Head = nw;
-				nw = new Student;
-				continue;
-			}
-			Student *lst = Head, *p = Head->nxt;
-			while (p != NULL)
-			{
+			pnew -> nxt =NULL;
+            pend -> nxt = pnew;
+            pend = pnew;
+			pnew = new Student;
+		}
+		Student *p,*q;
 				if (order == 1)
 				{
-					if (nw->Idnum > p->Idnum)
-					{
-						lst = p;
-						p = p->nxt;
-					}
-					else
-						break;
+                    for(p = Head -> nxt; p != NULL ; p = p-> nxt)
+                        for(q = p -> nxt ; q != NULL ; q = q->nxt)
+                        {
+                            if(p -> Id .size() < q -> Id.size())
+                                continue;
+                    if(p -> Id > q-> Id)
+                    {
+                        string t1 = p -> Id;
+                        p -> Id = q -> Id;
+                        q -> Id = t1;
+                        cout<<t1<<endl;
+                    }
 				}
+				       }
 				else if (order == 2)
 				{
-					if (nw->Math < p->Math)
-					{
-						lst = p;
-						p = p->nxt;
-					}
-					else
-						break;
+					 for(p = Head -> nxt; p != NULL ; p = p-> nxt)
+                        for(q = p -> nxt ; q != NULL ; q = q->nxt)
+                    if(p ->Math < q-> Math)
+                    {
+                        int t1 = p -> Math;
+                        p -> Math = q -> Math;
+                        q -> Math = t1;
+                    }
 				}
 				else if (order == 3)
 				{
-					if (nw->English < p->English)
-					{
-						lst = p;
-						p = p->nxt;
-					}
-					else
-						break;
+					 for(p = Head -> nxt; p != NULL ; p = p-> nxt)
+                        for(q = p -> nxt ; q != NULL ; q = q->nxt)
+                    if(p ->English < q-> English)
+                    {
+                        int t1 = p -> English;
+                        p -> English = q -> English;
+                        q -> English = t1;
+                    }
 				}
 				else if (order == 4)
 				{
-					if (nw->computer < p->computer)
-					{
-						lst = p;
-						p = p->nxt;
-					}
-					else
-						break;
+					 for(p = Head -> nxt; p != NULL ; p = p-> nxt)
+                        for(q = p -> nxt ; q != NULL ; q = q->nxt)
+                    if(p ->computer < q-> computer)
+                    {
+                        int t1 = p -> computer;
+                        p -> computer = q -> computer;
+                        q -> computer = t1;
+                    }
 				}
 				else if (order == 5)
 				{
-					if (nw->Sum < p->Sum)
-					{
-						lst = p;
-						p = p->nxt;
-					}
-					else
-						break;
+					 for(p = Head -> nxt; p != NULL ; p = p-> nxt)
+                        for(q = p -> nxt ; q != NULL ; q = q->nxt)
+                    if(p ->Sum < q-> Sum)
+                    {
+                        int t1 = p -> Sum;
+                        p -> Sum = q ->Sum;
+                        q -> Sum = t1;
+                    }
 				}
 				else if (order == 6)
 				{
-					if (((nw->Sum) / 3) < (p->Sum / 3))
-					{
-						lst = p;
-						p = p->nxt;
-					}
-					else
-						break;
+					 for(p = Head -> nxt; p != NULL ; p = p-> nxt)
+                        for(q = p -> nxt ; q != NULL ; q = q->nxt)
+                    if(p ->Average < q-> Average)
+                    {
+                        int t1 = p -> Average;
+                        p -> Average= q ->Average;
+                        q -> Average = t1;
+                    }
 				}
-			}
-			nw->nxt = p;
-			lst->nxt = nw;
-
-			nw = new Student;
-		}
-
-		Student *r = Head;
+		Student *r = Head -> nxt;
 		puts("*******************************************************");
 		if (order == 1)
 			puts("              学号从小到大        ");
@@ -868,22 +816,23 @@ void MenuOrderAction()
 		ExitSystem();
 	}
 }
-
+};
 int main()
 {
 	while (1)
 	{
-		ShowMenu();
+		Student A;
+		A.ShowMenu();
 		printf("指令：");
 		scanf("%d", &order);
 		while ((order < 0) || (order > 7))
 		{
-			ShowMenu();
-			InputError();
+			A.ShowMenu();
+			A.InputError();
 			printf("指令：");
 			scanf("%d", &order);
 		}
-		MenuOrderAction();
+		A.MenuOrderAction();
 	}
 	return 0;
 }
