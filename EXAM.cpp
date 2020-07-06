@@ -748,15 +748,15 @@ void Sort()
 		if (order == 1)
 			puts("              学号从小到大        ");
 		else if (order == 2)
-			puts("              数学成绩从大到小    ");
+			puts("              数学成绩从小到大    ");
 		else if (order == 3)
-			puts("              英语成绩从大到小    ");
+			puts("              英语成绩从小到大     ");
 		else if (order == 4)
-			puts("              计算机成绩从大到小");
+			puts("              计算机成绩从小到大 ");
 		else if (order == 5)
-			puts("              总成绩从大到小");
+			puts("              总成绩从小到大 ");
 		else if (order == 6)
-			puts("              平均分从大到小");
+			puts("              平均分从小到大 ");
 		puts("*******************************************************\n");
 		cout << "\n序号\t学号\t姓名\t班级\t数学成绩\t英语成绩\t计算机成绩\t总分\t平均分\n";
 		int cnt = 0;
